@@ -5,62 +5,38 @@ resource "kubernetes_cluster_role" "this" {
 
   rule {
     api_groups = [""]
-    resources  = ["configmaps", "endpoints", "nodes", "pods", "secrets"]
+    resources  = ["nodes", "pods"]
     verbs      = ["get", "list", "watch"]
   }
 
   rule {
-    api_groups     = [""]
-    resources      = ["configmaps"]
+    api_groups = ["metrics.k8s.io"]
+    resources  = ["nodes", "pods"]
+    verbs      = ["get"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["pods/logs"]
+    verbs      = ["get"]
+  }
+
+  rule {
+    api_groups = ["coordination.k8s.io"]
+    resources  = ["leases"]
+    verbs      = ["create"]
+  }
+
+  rule {
+    api_groups     = ["coordination.k8s.io"]
+    resources      = ["leases"]
     verbs          = ["get", "update"]
-    resource_names = ["${var.name}-controller-leader-${var.name}"]
+    resource_names = [var.name]
   }
 
   rule {
-    api_groups = [""]
-    resources  = ["nodes"]
-    verbs      = ["get"]
-  }
-
-  rule {
-    api_groups = [""]
-    resources  = ["namespaces"]
-    verbs      = ["get"]
-  }
-
-  rule {
-    api_groups = [""]
-    resources  = ["endpoints"]
-    verbs      = ["create", "get", "update"]
-  }
-
-  rule {
-    api_groups = [""]
-    resources  = ["services"]
-    verbs      = ["get", "list", "update", "watch"]
-  }
-
-  rule {
-    api_groups = [""]
-    resources  = ["events"]
-    verbs      = ["create", "patch"]
-  }
-
-  rule {
-    api_groups = ["extensions", "networking.k8s.io"]
-    resources  = ["ingresses"]
-    verbs      = ["get", "list", "watch"]
-  }
-
-  rule {
-    api_groups = ["networking.k8s.io"]
-    resources  = ["ingressclasses"]
-    verbs      = ["get", "list", "watch"]
-  }
-
-  rule {
-    api_groups = ["extensions", "networking.k8s.io"]
-    resources  = ["ingresses/status"]
-    verbs      = ["update"]
+    api_groups = ["ilert.com"]
+    resources  = ["incidents"]
+    verbs      = ["create", "get", "list", "update", "watch", "delete"]
   }
 }
