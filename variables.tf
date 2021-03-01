@@ -48,6 +48,29 @@ variable "pod_labels" {
   default     = {}
 }
 
+variable "cpu_request" {
+  description = "The pod CPU resource request."
+  type        = string
+  default     = "20m"
+}
+
+variable "cpu_limit" {
+  description = "The pod CPU resource limit."
+  type        = string
+  default     = "100m"
+}
+
+variable "memory_request" {
+  description = "The pod memory resource request."
+  type        = string
+  default     = "32Mi"
+}
+
+variable "memory_limit" {
+  description = "The pod memory resource limit."
+  type        = string
+  default     = "128Mi"
+}
 
 variable "config" {
   description = "The ilert-kube-agent config. See https://github.com/iLert/ilert-kube-agent/blob/master/config.yaml for available options"
