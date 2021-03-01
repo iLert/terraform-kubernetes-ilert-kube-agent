@@ -142,7 +142,7 @@ variable "config" {
 
     alarms = {
       pods = {
-        enabled = false
+        enabled = true
         terminate = {
           enabled  = true
           priority = "HIGH"
