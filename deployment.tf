@@ -75,13 +75,13 @@ resource "kubernetes_deployment" "this" {
           name              = var.name
           image             = var.image
           image_pull_policy = "IfNotPresent"
+          command           = ["/bin/ilert-kube-agent"]
 
           args = [
             "--settings.apiKey=${var.api_key}",
             "--settings.port=${var.port}",
             "--config=/etc/${var.name}/config.yaml",
           ]
-
 
           env {
             name = "NAMESPACE"
