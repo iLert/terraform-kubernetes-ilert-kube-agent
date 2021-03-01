@@ -12,7 +12,7 @@ resource "kubernetes_cluster_role_binding" "this" {
   subject {
     kind      = "ServiceAccount"
     name      = kubernetes_service_account.this.metadata.0.name
-    namespace = kubernetes_namespace.this.metadata[0].name
+    namespace = var.namespace
     api_group = ""
   }
 }
