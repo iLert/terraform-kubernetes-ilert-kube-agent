@@ -27,7 +27,12 @@ resource "kubernetes_deployment" "this" {
           var.pod_labels
         )
 
-        annotations = var.pod_annotations
+        annotations = merge(
+          {
+            "checksum/configmap" = sha256(yamlencode(var.config))
+          },
+          var.pod_annotations
+        )
       }
 
       spec {
