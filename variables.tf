@@ -12,7 +12,7 @@ variable "name" {
 variable "namespace" {
   description = "Kubernetes namespace."
   type        = string
-  default     = "kube-systems"
+  default     = "kube-system"
 }
 
 variable "replicas" {
