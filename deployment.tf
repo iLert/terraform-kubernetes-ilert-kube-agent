@@ -94,7 +94,7 @@ resource "kubernetes_deployment" "this" {
           }
 
           dynamic "env" {
-            for_each = var.envs
+            for_each = var.pod_envs
             content {
               name  = env.key
               value = env.value
