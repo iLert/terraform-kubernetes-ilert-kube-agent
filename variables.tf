@@ -53,7 +53,6 @@ variable "config" {
   description = "The ilert-kube-agent config. See https://github.com/iLert/ilert-kube-agent/blob/master/config.yaml for available options"
   type = object({
     settings = object({
-      apiKey        = string
       electionID    = string
       checkInterval = string
       log = object({
