@@ -48,6 +48,15 @@ variable "pod_labels" {
   default     = {}
 }
 
+variable "pod_envs" {
+  description = "Additional envs to be added to the pods."
+  type        = map(string)
+  default     = {}
+  # default = {
+  #   "LOG_LEVEL" = "info"
+  # }
+}
+
 variable "cpu_request" {
   description = "The pod CPU resource request."
   type        = string
