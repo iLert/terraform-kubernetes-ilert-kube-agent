@@ -30,7 +30,7 @@ variable "port" {
 variable "image" {
   description = "The ilert-kube-agent image to use. See https://github.com/iLert/ilert-kube-agent/releases for available versions"
   type        = string
-  default     = "ilert/ilert-kube-agent:v1.4.1"
+  default     = "ilert/ilert-kube-agent:v1.4.2"
 }
 
 variable "pod_annotations" {
