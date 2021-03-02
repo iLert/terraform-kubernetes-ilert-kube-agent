@@ -145,7 +145,10 @@ variable "config" {
       })
     })
 
-    links = map(string)
+    links = object({
+      pods = map(string)
+      nodes = map(string)
+    })
   })
 
   default = {
@@ -216,6 +219,9 @@ variable "config" {
       }
     }
 
-    links = {}
+    links = {
+      pods = {}
+      nodes = {}
+    }
   }
 }
