@@ -144,6 +144,8 @@ variable "config" {
         })
       })
     })
+
+    links = map(string)
   })
 
   default = {
@@ -213,5 +215,7 @@ variable "config" {
         }
       }
     }
+
+    links = {}
   }
 }
