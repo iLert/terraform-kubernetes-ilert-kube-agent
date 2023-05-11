@@ -9,11 +9,35 @@ resource "kubernetes_manifest" "incidents" {
       group = "ilert.com"
       scope = "Namespaced"
 
-      version = "v1"
       versions = [{
         name    = "v1"
         served  = true
         storage = true
+        schema = {
+          openAPIV3Schema = {
+            required = ["spec"]
+            properties = {
+              spec = {
+                required = ["id"]
+                properties = {
+                  id = {
+                    type    = "integer"
+                    minimum = 0
+                  }
+                  summary = {
+                    type = "string"
+                  }
+                  details = {
+                    type = "string"
+                  }
+                  type = {
+                    type = "string"
+                  }
+                }
+              }
+            }
+          }
+        }
       }]
 
       names = {
@@ -21,32 +45,6 @@ resource "kubernetes_manifest" "incidents" {
         singular = "incident"
         listKind = "IncidentList"
         kind     = "Incident"
-      }
-
-      validation = {
-        openAPIV3Schema = {
-          required = ["spec"]
-          properties = {
-            spec = {
-              required = ["id"]
-              properties = {
-                id = {
-                  type    = "integer"
-                  minimum = 0
-                }
-                summary = {
-                  type = "string"
-                }
-                details = {
-                  type = "string"
-                }
-                type = {
-                  type = "string"
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
