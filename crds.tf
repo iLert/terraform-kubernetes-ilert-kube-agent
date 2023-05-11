@@ -1,6 +1,6 @@
 resource "kubernetes_manifest" "incidents" {
   manifest = {
-    apiVersion = "apiextensions.k8s.io/v1beta1"
+    apiVersion = "apiextensions.k8s.io/v1"
     kind       = "CustomResourceDefinition"
     metadata = {
       name = "incidents.ilert.com"
