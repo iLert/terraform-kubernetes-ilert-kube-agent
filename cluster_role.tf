@@ -17,8 +17,20 @@ resource "kubernetes_cluster_role" "this" {
 
   rule {
     api_groups = [""]
-    resources  = ["pods/logs"]
+    resources  = ["pods/log"]
     verbs      = ["get"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["pods"]
+    verbs      = ["delete"]
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["deployments", "replicasets", "statefulsets", "deployments/scale", "statefulsets/scale"]
+    verbs      = ["list", "get", "patch", "update"]
   }
 
   rule {
@@ -32,11 +44,5 @@ resource "kubernetes_cluster_role" "this" {
     resources      = ["leases"]
     verbs          = ["get", "update"]
     resource_names = [var.name]
-  }
-
-  rule {
-    api_groups = ["ilert.com"]
-    resources  = ["incidents"]
-    verbs      = ["create", "get", "list", "update", "watch", "delete"]
   }
 }

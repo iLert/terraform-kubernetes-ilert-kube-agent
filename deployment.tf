@@ -84,6 +84,7 @@ resource "kubernetes_deployment" "this" {
 
           args = [
             "--settings.apiKey=${var.api_key}",
+            "--settings.httpAuthorizationKey=${var.http_authorization_key}",
             "--settings.port=${var.port}",
             "--config=/etc/${var.name}/config.yaml",
           ]

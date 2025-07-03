@@ -3,6 +3,11 @@ variable "api_key" {
   type        = string
 }
 
+variable "http_authorization_key" {
+  description = "The HTTP authorization key for in-cluster routes"
+  type        = string
+}
+
 variable "name" {
   description = "Kubernetes name."
   type        = string
