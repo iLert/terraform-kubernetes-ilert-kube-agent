@@ -6,6 +6,7 @@ variable "api_key" {
 variable "http_authorization_key" {
   description = "The HTTP authorization key for in-cluster routes"
   type        = string
+  default     = ""
 }
 
 variable "name" {

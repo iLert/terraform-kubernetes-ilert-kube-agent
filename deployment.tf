@@ -82,12 +82,12 @@ resource "kubernetes_deployment" "this" {
           image_pull_policy = "IfNotPresent"
           command           = ["/bin/ilert-kube-agent"]
 
-          args = [
+          args = compact([
             "--settings.apiKey=${var.api_key}",
-            "--settings.httpAuthorizationKey=${var.http_authorization_key}",
+            var.http_authorization_key != "" ? "--settings.httpAuthorizationKey=${var.http_authorization_key}" : null,
             "--settings.port=${var.port}",
             "--config=/etc/${var.name}/config.yaml",
-          ]
+          ])
 
           env {
             name = "NAMESPACE"
