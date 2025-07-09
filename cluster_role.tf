@@ -28,7 +28,7 @@ resource "kubernetes_cluster_role" "this" {
   }
 
   rule {
-    api_groups = [""]
+    api_groups = ["apps"]
     resources  = ["deployments", "replicasets", "statefulsets", "deployments/scale", "statefulsets/scale"]
     verbs      = ["list", "get", "patch", "update"]
   }
